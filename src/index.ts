@@ -34,8 +34,6 @@ createConnection()
     const users = await connection.manager.find(User);
     console.log('Loaded users here: ', users);
 
-    var skata = 32
-
     console.log('Here you can setup and run express/koa/any other framework.');
   })
   .catch(error => console.log(error));
