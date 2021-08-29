@@ -1,8 +1,8 @@
 {
-  "name": "postgres-test",
+  "name": "typeorm-node-backend-boilerplate",
   "version": "1.0.0",
-  "description": "Awesome project developed with TypeORM",
-  "author": "",
+  "description": "A boilerplate backend project created using Nodejs, TypeORM, Typescript, Express and Postgres",
+  "author": "Theofilos Chamalis",
   "license": "ISC",
   "main": "src/index.ts",
   "scripts": {
