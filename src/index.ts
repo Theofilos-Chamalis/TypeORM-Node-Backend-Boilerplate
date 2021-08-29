@@ -1,5 +1,4 @@
 import express, { Express, Request, Response } from 'express';
-import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
@@ -12,11 +11,11 @@ const PORT = process.env.PORT || 3000;
 const app: Express = express();
 
 app.use(helmet());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('<h1>Hello from the TypeScript world!</h1>');
+  res.send(`<h1>Hello from ${process.env.npm_package_name}!</h1>`);
 });
 
 createConnection()
