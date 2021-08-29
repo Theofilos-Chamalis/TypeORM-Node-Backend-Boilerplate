@@ -1,4 +1,5 @@
 {
+  "extends": ["node", "prettier"],
   "settings": {
     "import/resolver": {
       "node": {
@@ -6,5 +7,5 @@
       }
     }
   },
-  "extends": ["node", "prettier"]
+  "parserOptions": { "ecmaVersion": 2015, "ecmaFeatures": { "legacyDecorators": true } }
 }

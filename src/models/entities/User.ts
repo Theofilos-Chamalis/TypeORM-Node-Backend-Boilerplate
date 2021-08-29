@@ -1,17 +1,39 @@
-//@ts-nocheck
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { EntitySchema } from 'typeorm';
 
-@Entity()
-export class User {
-  @PrimaryGeneratedColumn()
+export interface User {
   id: number;
-
-  @Column()
   firstName: string;
-
-  @Column()
   lastName: string;
-
-  @Column()
   age: number;
+  createdAt: Date;
+  updatedAt: Date;
 }
+
+export default new EntitySchema<User>({
+  name: 'user',
+  columns: {
+    id: {
+      type: Number,
+      primary: true,
+      generated: true,
+    },
+    firstName: {
+      type: String,
+    },
+    lastName: {
+      type: String,
+    },
+    age: {
+      type: Number,
+      default: 30,
+    },
+    createdAt: {
+      type: Date,
+      createDate: true,
+    },
+    updatedAt: {
+      type: Date,
+      updateDate: true,
+    },
+  },
+});
