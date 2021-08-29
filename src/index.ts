@@ -1,6 +1,6 @@
 import express, { Express } from 'express';
 import 'reflect-metadata';
-import { createConnection } from 'typeorm';
+import { createConnection, getConnection } from 'typeorm';
 import helmet from 'helmet';
 import cors from 'cors';
 import dotenv from 'dotenv';
@@ -26,3 +26,9 @@ createConnection()
     app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
   })
   .catch(error => console.error(error));
+
+process.on('SIGINT', async () => {
+  const dbConnection = await getConnection();
+  await dbConnection?.close();
+  throw new Error(`${process.env.npm_package_name} stopped!`);
+});
