@@ -1,9 +1,11 @@
-import express, { Express, Request, Response } from 'express';
-import helmet from 'helmet';
+import express, { Express } from 'express';
 import 'reflect-metadata';
 import { createConnection } from 'typeorm';
-import { User } from './database/entities/User';
+import helmet from 'helmet';
+import cors from 'cors';
 import dotenv from 'dotenv';
+import exampleRoutes from './routes/examples';
+import userRoutes from './routes/users';
 
 dotenv.config({ path: '.env' });
 
@@ -11,30 +13,16 @@ const PORT = process.env.PORT || 3000;
 const app: Express = express();
 
 app.use(helmet());
+app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-  res.send(`<h1>Hello from ${process.env.npm_package_name}!</h1>`);
-});
+app.use('/', exampleRoutes);
+app.use('/users', userRoutes);
 
 createConnection()
-  .then(async connection => {
-    console.log('Inserting a new user into the database...');
-    const user = new User();
-    user.firstName = 'Timber';
-    user.lastName = 'Saw';
-    user.age = 25;
-    await connection.manager.save(user);
-    console.log('Saved a new user with id: ' + user.id);
-    const usersNumber = await connection.manager.count(User);
-    console.log(`We have ${usersNumber} users.`);
-    console.log('Loading users from the database...');
-    const users = await connection.manager.find(User);
-    console.log('Loaded users here: ', users);
-
-    console.log('Here you can setup and run express/koa/any other framework.');
+  .then(() => {
+    console.log('Database connected 💾!');
+    app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
   })
-  .catch(error => console.log(error));
-
-app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
+  .catch(error => console.error(error));
