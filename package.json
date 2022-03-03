@@ -31,7 +31,7 @@
     "concurrently": "^6.5.1",
     "eslint": "^7.32.0",
     "eslint-config-node": "^4.1.0",
-    "eslint-config-prettier": "^8.4.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.25.4",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
