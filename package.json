@@ -21,7 +21,7 @@
     "pg": "^8.9.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^4.1.2",
-    "typeorm": "^0.3.12"
+    "typeorm": "^0.3.30"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.2",
